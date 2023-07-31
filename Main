@@ -1,0 +1,1154 @@
+import java.util.*;
+public class SpanishTranslator 
+{
+    public static void main(String[] args)
+    {
+        Scanner theScanner = new Scanner(System.in);
+        System.out.println("Welcome to the Spanish Conjugator.");
+        System.out.println("Click space, then enter to scroll through the rules.");
+        String space1 = theScanner.nextLine();
+        System.out.println("In this program, you will input a Spanish verb.");
+        String space2 = theScanner.nextLine();
+        System.out.println("Then, you will input a tense.");
+        String space3 = theScanner.nextLine();
+        System.out.println("Finally, our Spanish Conjugator will");
+        System.out.println("Use its methods to conjugate your verb.");
+        String space4 = theScanner.nextLine();
+        System.out.println("To get started, input a verb in lower case.");
+        String verb = theScanner.nextLine();
+        System.out.println("What is the subject pronoun: yo, tu, el, ella, usted, nosotros, ellos, ellas, ustedes.");
+        String pronoun = theScanner.nextLine();
+        System.out.println("Select a Tense: present, preterite, future.");
+        String tense = theScanner.nextLine();
+        boolean irregular = checkIrregulars(verb, tense);
+        String conjugatedVerb; 
+        String ending; 
+        int length;
+        if(tense.equals("present"))
+        {
+            if(irregular)
+            {
+                conjugatedVerb = conjugatePresentIrregular(pronoun, verb);
+            }
+            else
+            {
+                length = verb.length();
+                ending = verb.substring(length - 2, length); 
+                if(ending.equals("ar")) 
+                {
+                    conjugatedVerb = conjugatePresentAr(pronoun, verb);
+                }
+                else if(ending.equals("er"))
+                {
+                    conjugatedVerb = conjugatePresentEr(pronoun, verb); 
+                }
+                else
+                {
+                    conjugatedVerb = conjugatePresentIr(pronoun, verb);
+                }
+            }
+        }
+        else if(tense.equals("preterite"))
+        {
+            if(irregular)
+            {
+                conjugatedVerb = conjugatePastIrregular(pronoun, verb);
+            }
+            else
+            {
+                length = verb.length();
+                ending = verb.substring(length - 2, length); 
+                if(ending.equals("ar")) 
+                {
+                    conjugatedVerb = conjugatePastAr(pronoun, verb);
+                }
+                else if(ending.equals("er"))
+                {
+                    conjugatedVerb = conjugatePastEr(pronoun, verb); 
+                }
+                else
+                {
+                    conjugatedVerb = conjugatePastIr(pronoun, verb);
+                }
+            }
+        }
+        else 
+        {
+            if(irregular)
+            {
+                conjugatedVerb = conjugateFutureIrregular(pronoun, verb);
+            }
+            else
+            {
+                length = verb.length();
+                ending = verb.substring(length - 2, length); 
+                if(ending.equals("ar")) 
+                {
+                    conjugatedVerb = conjugateFutureAr(pronoun, verb);
+                }
+                else if(ending.equals("er"))
+                {
+                    conjugatedVerb = conjugateFutureEr(pronoun, verb); 
+                }
+                else
+                {
+                    conjugatedVerb = conjugateFutureIr(pronoun, verb);
+                }
+            }
+        }
+        System.out.println("Your verb is: " + conjugatedVerb);
+    }
+    public static boolean checkIrregulars(String theverb, String thetense)
+    {
+        if(thetense.equals("present") && (theverb.equals("caer") || theverb.equals("conocer") || theverb.equals("dar") || theverb.equals("hacer") || theverb.equals("poner") || theverb.equals("querer") || theverb.equals("saber") || theverb.equals("salir") || theverb.equals("ser") || theverb.equals("traducir") || theverb.equals("traer") || theverb.equals("ver")))
+        {
+            return true; 
+        }
+        else if(thetense.equals("preterite") && (theverb.equals("ser") || theverb.equals("ir") || theverb.equals("tener") || theverb.equals("estar") || theverb.equals("venir") || theverb.equals("poder") || theverb.equals("poner") || theverb.equals("saber") || theverb.equals("hacer") || theverb.equals("querer") || theverb.equals("decir") || theverb.equals("traer") || theverb.equals("dar")))
+        {
+            return true; 
+        }
+        else if(thetense.equals("future") && (theverb.equals("decir") || theverb.equals("hacer") || theverb.equals("poder") || theverb.equals("poner") || theverb.equals("querer") || theverb.equals("tener") || theverb.equals("saber") || theverb.equals("salir") || theverb.equals("venir")))
+        {
+            return true; 
+        }
+        else 
+        {
+            return false; 
+        }
+    }
+    public static String conjugatePresentIrregular(String thePronoun1, String theVerb1)
+    {
+        String newVerb = "";
+        if(thePronoun1.equals("yo"))
+        {
+            if(theVerb1.equals("caer"))
+            {
+                newVerb = "caigo";
+            }
+            else if(theVerb1.equals("conocer"))
+            {
+                newVerb = "conozco";
+            }
+            else if(theVerb1.equals("dar"))
+            {
+                newVerb = "doy";
+            }
+            else if(theVerb1.equals("hacer"))
+            {
+                newVerb = "hago";
+            }
+            else if(theVerb1.equals("poner"))
+            {
+                newVerb = "pongo"; 
+            }
+            else if(theVerb1.equals("querer"))
+            {
+                newVerb = "quiero";
+            }
+            else if(theVerb1.equals("saber"))
+            {
+                newVerb = "se";
+            }
+            else if(theVerb1.equals("salir"))
+            {
+                newVerb = "salgo";
+            }
+            else if(theVerb1.equals("ser"))
+            {
+                newVerb = "soy";
+            }
+            else if(theVerb1.equals("traducir"))
+            {
+                newVerb = "traduzco";
+            }
+            else if(theVerb1.equals("traer"))
+            {
+                newVerb = "traigo";
+            }
+            else if(theVerb1.equals("ver"))
+            {
+                newVerb = "veo";
+            }
+            else
+            {
+                newVerb = "not programmed";
+            }
+        }
+        else if(thePronoun1.equals("tu"))
+        {
+            if(theVerb1.equals("caer"))
+            {
+                newVerb = "caes";
+            }
+            else if(theVerb1.equals("conocer"))
+            {
+                newVerb = "conoces";
+            }
+            else if(theVerb1.equals("dar"))
+            {
+                newVerb = "das";
+            }
+            else if(theVerb1.equals("hacer"))
+            {
+                newVerb = "haces";
+            }
+            else if(theVerb1.equals("poner"))
+            {
+                newVerb = "pones"; 
+            }
+            else if(theVerb1.equals("querer"))
+            {
+                newVerb = "quieres";
+            }
+            else if(theVerb1.equals("saber"))
+            {
+                newVerb = "sabes";
+            }
+            else if(theVerb1.equals("salir"))
+            {
+                newVerb = "sales";
+            }
+            else if(theVerb1.equals("ser"))
+            {
+                newVerb = "eres";
+            }
+            else if(theVerb1.equals("traducir"))
+            {
+                newVerb = "traduces";
+            }
+            else if(theVerb1.equals("traer"))
+            {
+                newVerb = "traes";
+            }
+            else if(theVerb1.equals("ver"))
+            {
+                newVerb = "ves";
+            }
+            else
+            {
+                newVerb = "not programmed";
+            }
+        }
+        else if(thePronoun1.equals("el") || thePronoun1.equals("ella") || thePronoun1.equals("usted"))
+        {
+            if(theVerb1.equals("caer"))
+            {
+                newVerb = "cae";
+            }
+            else if(theVerb1.equals("conocer"))
+            {
+                newVerb = "conoce";
+            }
+            else if(theVerb1.equals("dar"))
+            {
+                newVerb = "da";
+            }
+            else if(theVerb1.equals("hacer"))
+            {
+                newVerb = "hace";
+            }
+            else if(theVerb1.equals("poner"))
+            {
+                newVerb = "pone"; 
+            }
+            else if(theVerb1.equals("querer"))
+            {
+                newVerb = "quiere";
+            }
+            else if(theVerb1.equals("saber"))
+            {
+                newVerb = "sabe";
+            }
+            else if(theVerb1.equals("salir"))
+            {
+                newVerb = "sale";
+            }
+            else if(theVerb1.equals("ser"))
+            {
+                newVerb = "es";
+            }
+            else if(theVerb1.equals("traducir"))
+            {
+                newVerb = "traduce";
+            }
+            else if(theVerb1.equals("traer"))
+            {
+                newVerb = "trae";
+            }
+            else if(theVerb1.equals("ver"))
+            {
+                newVerb = "ve";
+            }
+            else
+            {
+                newVerb = "not programmed";
+            }
+        }
+        else if(thePronoun1.equals("nosotros"))
+        {
+            if(theVerb1.equals("caer"))
+            {
+                newVerb = "caemos";
+            }
+            else if(theVerb1.equals("conocer"))
+            {
+                newVerb = "conocemos";
+            }
+            else if(theVerb1.equals("dar"))
+            {
+                newVerb = "damos";
+            }
+            else if(theVerb1.equals("hacer"))
+            {
+                newVerb = "hacemos";
+            }
+            else if(theVerb1.equals("poner"))
+            {
+                newVerb = "ponemos"; 
+            }
+            else if(theVerb1.equals("querer"))
+            {
+                newVerb = "queremos";
+            }
+            else if(theVerb1.equals("saber"))
+            {
+                newVerb = "sabemos";
+            }
+            else if(theVerb1.equals("salir"))
+            {
+                newVerb = "salimos";
+            }
+            else if(theVerb1.equals("ser"))
+            {
+                newVerb = "somos";
+            }
+            else if(theVerb1.equals("traducir"))
+            {
+                newVerb = "traducimos";
+            }
+            else if(theVerb1.equals("traer"))
+            {
+                newVerb = "traemos";
+            }
+            else if(theVerb1.equals("ver"))
+            {
+                newVerb = "vemos";
+            }
+            else
+            {
+                newVerb = "not programmed";
+            }
+        }
+        else if(thePronoun1.equals("ellos") || thePronoun1.equals("ellas") || thePronoun1.equals("ustedes"))
+        {
+            if(theVerb1.equals("caer"))
+            {
+                newVerb = "caen";
+            }
+            else if(theVerb1.equals("conocer"))
+            {
+                newVerb = "conocen";
+            }
+            else if(theVerb1.equals("dar"))
+            {
+                newVerb = "dan";
+            }
+            else if(theVerb1.equals("hacer"))
+            {
+                newVerb = "hacen";
+            }
+            else if(theVerb1.equals("poner"))
+            {
+                newVerb = "ponen"; 
+            }
+            else if(theVerb1.equals("querer"))
+            {
+                newVerb = "quieren";
+            }
+            else if(theVerb1.equals("saber"))
+            {
+                newVerb = "saben";
+            }
+            else if(theVerb1.equals("salir"))
+            {
+                newVerb = "salen";
+            }
+            else if(theVerb1.equals("ser"))
+            {
+                newVerb = "son";
+            }
+            else if(theVerb1.equals("traducir"))
+            {
+                newVerb = "traducen";
+            }
+            else if(theVerb1.equals("traer"))
+            {
+                newVerb = "traen";
+            }
+            else if(theVerb1.equals("ver"))
+            {
+                newVerb = "ven";
+            }
+            else
+            {
+                newVerb = "not programmed";
+            }
+        }
+        return newVerb;
+    }
+    public static String conjugatePastIrregular(String thePronoun1, String theVerb1)
+    {
+        String newVerb = "";
+        if(thePronoun1.equals("yo"))
+        {
+            if(theVerb1.equals("ser"))
+            {
+                newVerb = "fui";
+            }
+            else if(theVerb1.equals("ir"))
+            {
+                newVerb = "fui";
+            }
+            else if(theVerb1.equals("tener"))
+            {
+                newVerb = "tuve";
+            }
+            else if(theVerb1.equals("estar"))
+            {
+                newVerb = "estuve";
+            }
+            else if(theVerb1.equals("venir"))
+            {
+                newVerb = "vine"; 
+            }
+            else if(theVerb1.equals("poder"))
+            {
+                newVerb = "pude";
+            }
+            else if(theVerb1.equals("poner"))
+            {
+                newVerb = "puse";
+            }
+            else if(theVerb1.equals("saber"))
+            {
+                newVerb = "supe";
+            }
+            else if(theVerb1.equals("hacer"))
+            {
+                newVerb = "hice";
+            }
+            else if(theVerb1.equals("querer"))
+            {
+                newVerb = "quise";
+            }
+            else if(theVerb1.equals("decir"))
+            {
+                newVerb = "dije";
+            }
+            else if(theVerb1.equals("traer"))
+            {
+                newVerb = "traje";
+            }
+            else if(theVerb1.equals("dar"))
+            {
+                newVerb = "di";
+            }
+            else
+            {
+                newVerb = "not programmed";
+            }
+        }
+        if(thePronoun1.equals("tu"))
+        {
+            if(theVerb1.equals("ser"))
+            {
+                newVerb = "fuiste";
+            }
+            else if(theVerb1.equals("ir"))
+            {
+                newVerb = "fuiste";
+            }
+            else if(theVerb1.equals("tener"))
+            {
+                newVerb = "tuviste";
+            }
+            else if(theVerb1.equals("estar"))
+            {
+                newVerb = "estuviste";
+            }
+            else if(theVerb1.equals("venir"))
+            {
+                newVerb = "viniste"; 
+            }
+            else if(theVerb1.equals("poder"))
+            {
+                newVerb = "pudiste";
+            }
+            else if(theVerb1.equals("poner"))
+            {
+                newVerb = "pusiste";
+            }
+            else if(theVerb1.equals("saber"))
+            {
+                newVerb = "supiste";
+            }
+            else if(theVerb1.equals("hacer"))
+            {
+                newVerb = "hiciste";
+            }
+            else if(theVerb1.equals("querer"))
+            {
+                newVerb = "quisiste";
+            }
+            else if(theVerb1.equals("decir"))
+            {
+                newVerb = "dijiste";
+            }
+            else if(theVerb1.equals("traer"))
+            {
+                newVerb = "trajiste";
+            }
+            else if(theVerb1.equals("dar"))
+            {
+                newVerb = "diste";
+            }
+            else
+            {
+                newVerb = "not programmed";
+            }
+        }
+        if(thePronoun1.equals("el") || thePronoun1.equals("ella") || thePronoun1.equals("usted"))
+        {
+            if(theVerb1.equals("ser"))
+            {
+                newVerb = "fue";
+            }
+            else if(theVerb1.equals("ir"))
+            {
+                newVerb = "fue";
+            }
+            else if(theVerb1.equals("tener"))
+            {
+                newVerb = "tuvo";
+            }
+            else if(theVerb1.equals("estar"))
+            {
+                newVerb = "estuvo";
+            }
+            else if(theVerb1.equals("venir"))
+            {
+                newVerb = "vino"; 
+            }
+            else if(theVerb1.equals("poder"))
+            {
+                newVerb = "pudo";
+            }
+            else if(theVerb1.equals("poner"))
+            {
+                newVerb = "puso";
+            }
+            else if(theVerb1.equals("saber"))
+            {
+                newVerb = "supo";
+            }
+            else if(theVerb1.equals("hacer"))
+            {
+                newVerb = "hizo";
+            }
+            else if(theVerb1.equals("querer"))
+            {
+                newVerb = "quiso";
+            }
+            else if(theVerb1.equals("decir"))
+            {
+                newVerb = "dijo";
+            }
+            else if(theVerb1.equals("traer"))
+            {
+                newVerb = "trajo";
+            }
+            else if(theVerb1.equals("dar"))
+            {
+                newVerb = "dio";
+            }
+            else
+            {
+                newVerb = "not programmed";
+            }
+        }
+        if(thePronoun1.equals("nosotros"))
+        {
+            if(theVerb1.equals("ser"))
+            {
+                newVerb = "fuimos";
+            }
+            else if(theVerb1.equals("ir"))
+            {
+                newVerb = "fuimos";
+            }
+            else if(theVerb1.equals("tener"))
+            {
+                newVerb = "tuvimos";
+            }
+            else if(theVerb1.equals("estar"))
+            {
+                newVerb = "estuvimos";
+            }
+            else if(theVerb1.equals("venir"))
+            {
+                newVerb = "vinimos"; 
+            }
+            else if(theVerb1.equals("poder"))
+            {
+                newVerb = "pudimos";
+            }
+            else if(theVerb1.equals("poner"))
+            {
+                newVerb = "pusimos";
+            }
+            else if(theVerb1.equals("saber"))
+            {
+                newVerb = "supimos";
+            }
+            else if(theVerb1.equals("hacer"))
+            {
+                newVerb = "hicimos";
+            }
+            else if(theVerb1.equals("querer"))
+            {
+                newVerb = "quisimos";
+            }
+            else if(theVerb1.equals("decir"))
+            {
+                newVerb = "dijimos";
+            }
+            else if(theVerb1.equals("traer"))
+            {
+                newVerb = "trajimos";
+            }
+            else if(theVerb1.equals("dar"))
+            {
+                newVerb = "dimos";
+            }
+            else
+            {
+                newVerb = "not programmed";
+            }
+        }
+        if(thePronoun1.equals("ellos") || thePronoun1.equals("ellas") || thePronoun1.equals("ustedes"))
+        {
+            if(theVerb1.equals("ser"))
+            {
+                newVerb = "fueron";
+            }
+            else if(theVerb1.equals("ir"))
+            {
+                newVerb = "fueron";
+            }
+            else if(theVerb1.equals("tener"))
+            {
+                newVerb = "tuvieron";
+            }
+            else if(theVerb1.equals("estar"))
+            {
+                newVerb = "estuvieron";
+            }
+            else if(theVerb1.equals("venir"))
+            {
+                newVerb = "vinieron"; 
+            }
+            else if(theVerb1.equals("poder"))
+            {
+                newVerb = "pudieron";
+            }
+            else if(theVerb1.equals("poner"))
+            {
+                newVerb = "pusieron";
+            }
+            else if(theVerb1.equals("saber"))
+            {
+                newVerb = "supieron";
+            }
+            else if(theVerb1.equals("hacer"))
+            {
+                newVerb = "hicieron";
+            }
+            else if(theVerb1.equals("querer"))
+            {
+                newVerb = "quisieron";
+            }
+            else if(theVerb1.equals("decir"))
+            {
+                newVerb = "dijeron";
+            }
+            else if(theVerb1.equals("traer"))
+            {
+                newVerb = "trajeron";
+            }
+            else if(theVerb1.equals("dar"))
+            {
+                newVerb = "dieron";
+            }
+            else
+            {
+                newVerb = "not programmed";
+            }
+        }
+        return newVerb;
+    }
+    public static String conjugateFutureIrregular(String thePronoun1, String theVerb1)
+    {
+        String newVerb = "";
+        if(thePronoun1.equals("tu"))
+        {
+            if(theVerb1.equals("decir"))
+            {
+                newVerb = "diras";
+            }
+            else if(theVerb1.equals("hacer"))
+            {
+                newVerb = "haras";
+            }
+            else if(theVerb1.equals("poder"))
+            {
+                newVerb = "podras";
+            }
+            else if(theVerb1.equals("poner"))
+            {
+                newVerb = "pondras";
+            }
+            else if(theVerb1.equals("querer"))
+            {
+                newVerb = "querras"; 
+            }
+            else if(theVerb1.equals("tener"))
+            {
+                newVerb = "tendras";
+            }
+            else if(theVerb1.equals("saber"))
+            {
+                newVerb = "sabras";
+            }
+            else if(theVerb1.equals("salir"))
+            {
+                newVerb = "saldras";
+            }
+            else if(theVerb1.equals("venir"))
+            {
+                newVerb = "vendras";
+            }
+            else
+            {
+                newVerb = "not programmed";
+            }
+        }
+        if(thePronoun1.equals("yo"))
+        {
+            if(theVerb1.equals("decir"))
+            {
+                newVerb = "dire";
+            }
+            else if(theVerb1.equals("hacer"))
+            {
+                newVerb = "hare";
+            }
+            else if(theVerb1.equals("poder"))
+            {
+                newVerb = "podre";
+            }
+            else if(theVerb1.equals("poner"))
+            {
+                newVerb = "pondre";
+            }
+            else if(theVerb1.equals("querer"))
+            {
+                newVerb = "querre"; 
+            }
+            else if(theVerb1.equals("tener"))
+            {
+                newVerb = "tendre";
+            }
+            else if(theVerb1.equals("saber"))
+            {
+                newVerb = "sabre";
+            }
+            else if(theVerb1.equals("salir"))
+            {
+                newVerb = "saldre";
+            }
+            else if(theVerb1.equals("venir"))
+            {
+                newVerb = "vendre";
+            }
+            else
+            {
+                newVerb = "not programmed";
+            }
+        }
+        if(thePronoun1.equals("el") || thePronoun1.equals("ella") || thePronoun1.equals("ustedes"))
+        {
+            if(theVerb1.equals("decir"))
+            {
+                newVerb = "dira";
+            }
+            else if(theVerb1.equals("hacer"))
+            {
+                newVerb = "hara";
+            }
+            else if(theVerb1.equals("poder"))
+            {
+                newVerb = "podra";
+            }
+            else if(theVerb1.equals("poner"))
+            {
+                newVerb = "pondra";
+            }
+            else if(theVerb1.equals("querer"))
+            {
+                newVerb = "querra"; 
+            }
+            else if(theVerb1.equals("tener"))
+            {
+                newVerb = "tendra";
+            }
+            else if(theVerb1.equals("saber"))
+            {
+                newVerb = "sabra";
+            }
+            else if(theVerb1.equals("salir"))
+            {
+                newVerb = "saldra";
+            }
+            else if(theVerb1.equals("venir"))
+            {
+                newVerb = "vendra";
+            }
+            else
+            {
+                newVerb = "not programmed";
+            }
+        }
+        if(thePronoun1.equals("nosotros"))
+        {
+            if(theVerb1.equals("decir"))
+            {
+                newVerb = "diremos";
+            }
+            else if(theVerb1.equals("hacer"))
+            {
+                newVerb = "haremos";
+            }
+            else if(theVerb1.equals("poder"))
+            {
+                newVerb = "podremos";
+            }
+            else if(theVerb1.equals("poner"))
+            {
+                newVerb = "pondremos";
+            }
+            else if(theVerb1.equals("querer"))
+            {
+                newVerb = "querremos"; 
+            }
+            else if(theVerb1.equals("tener"))
+            {
+                newVerb = "tendremos";
+            }
+            else if(theVerb1.equals("saber"))
+            {
+                newVerb = "sabremos";
+            }
+            else if(theVerb1.equals("salir"))
+            {
+                newVerb = "saldremos";
+            }
+            else if(theVerb1.equals("venir"))
+            {
+                newVerb = "vendremos";
+            }
+            else
+            {
+                newVerb = "not programmed";
+            }
+        }
+        if(thePronoun1.equals("ellos") || thePronoun1.equals("ellas") || thePronoun1.equals("usted"))
+        {
+            if(theVerb1.equals("decir"))
+            {
+                newVerb = "diran";
+            }
+            else if(theVerb1.equals("hacer"))
+            {
+                newVerb = "haran";
+            }
+            else if(theVerb1.equals("poder"))
+            {
+                newVerb = "podran";
+            }
+            else if(theVerb1.equals("poner"))
+            {
+                newVerb = "pondran";
+            }
+            else if(theVerb1.equals("querer"))
+            {
+                newVerb = "querran"; 
+            }
+            else if(theVerb1.equals("tener"))
+            {
+                newVerb = "tendran";
+            }
+            else if(theVerb1.equals("saber"))
+            {
+                newVerb = "sabran";
+            }
+            else if(theVerb1.equals("salir"))
+            {
+                newVerb = "saldran";
+            }
+            else if(theVerb1.equals("venir"))
+            {
+                newVerb = "vendran";
+            }
+            else
+            {
+                newVerb = "not programmed";
+            }
+        }
+        return newVerb; 
+    }
+    public static String conjugatePresentAr(String thePronoun1, String theVerb1)
+    {
+        String cutOff = theVerb1.substring(0, theVerb1.length() - 2);
+        String daNew;
+        if(thePronoun1.equals("yo"))
+        {
+            daNew = cutOff + "o";
+        }
+        else if(thePronoun1.equals("tu"))
+        {
+            daNew = cutOff + "as";
+        }
+        else if(thePronoun1.equals("el") || thePronoun1.equals("ella") || thePronoun1.equals("usted"))
+        {
+            daNew = cutOff + "a";
+        }
+        else if(thePronoun1.equals("nosotros"))
+        {
+            daNew = cutOff + "amos";
+        }
+        else 
+        {
+            daNew = cutOff + "an";
+        }
+        return daNew; 
+    }
+    public static String conjugatePresentEr(String thePronoun1, String theVerb1)
+    {
+        String cutOff = theVerb1.substring(0, theVerb1.length()-2);
+        String daNew;
+        if(thePronoun1.equals("yo"))
+        {
+            daNew = cutOff + "o";
+        }
+        else if(thePronoun1.equals("tu"))
+        {
+            daNew = cutOff + "es";
+        }
+        else if(thePronoun1.equals("el") || thePronoun1.equals("ella") || thePronoun1.equals("usted"))
+        {
+            daNew = cutOff + "e";
+        }
+        else if(thePronoun1.equals("nosotros"))
+        {
+            daNew = cutOff + "emos";
+        }
+        else
+        {
+            daNew = cutOff + "en";
+        }
+        return daNew;
+    }
+    public static String conjugatePresentIr(String thePronoun1, String theVerb1)
+    {
+        String cutOff = theVerb1.substring(0, theVerb1.length()-2);
+        String daNew;
+        if(thePronoun1.equals("yo"))
+        {
+            daNew = cutOff + "o";
+        }
+        else if(thePronoun1.equals("tu"))
+        {
+            daNew = cutOff + "es";
+        }
+        else if(thePronoun1.equals("el") || thePronoun1.equals("ella") || thePronoun1.equals("usted"))
+        {
+            daNew = cutOff + "e";
+        }
+        else if(thePronoun1.equals("nosotros"))
+        {
+            daNew = cutOff + "imos";
+        }
+        else
+        {
+            daNew = cutOff + "en";
+        }
+        return daNew; 
+    }
+    public static String conjugatePastAr(String thePronoun1, String theVerb1)
+    {
+        String cutOff = theVerb1.substring(0, theVerb1.length() - 2);
+        String daNew;
+        if(thePronoun1.equals("yo"))
+        {
+            daNew = cutOff + "e";
+        }
+        else if(thePronoun1.equals("tu"))
+        {
+            daNew = cutOff + "aste";
+        }
+        else if(thePronoun1.equals("el") || thePronoun1.equals("ella") || thePronoun1.equals("usted"))
+        {
+            daNew = cutOff + "o";
+        }
+        else if(thePronoun1.equals("nosotros"))
+        {
+            daNew = cutOff + "amos";
+        }
+        else 
+        {
+            daNew = cutOff + "aron";
+        }
+        return daNew; 
+    }
+    public static String conjugatePastEr(String thePronoun1, String theVerb1)
+    {
+        String cutOff = theVerb1.substring(0, theVerb1.length()-2);
+        String daNew;
+        if(thePronoun1.equals("yo"))
+        {
+            daNew = cutOff + "i";
+        }
+        else if(thePronoun1.equals("tu"))
+        {
+            daNew = cutOff + "iste";
+        }
+        else if(thePronoun1.equals("el") || thePronoun1.equals("ella") || thePronoun1.equals("usted"))
+        {
+            daNew = cutOff + "io";
+        }
+        else if(thePronoun1.equals("nosotros"))
+        {
+            daNew = cutOff + "imos";
+        }
+        else
+        {
+            daNew = cutOff + "ieron";
+        }
+        return daNew;
+    }
+    public static String conjugatePastIr(String thePronoun1, String theVerb1)
+    {
+        String cutOff = theVerb1.substring(0, theVerb1.length()-2);
+        String daNew;
+        if(thePronoun1.equals("yo"))
+        {
+            daNew = cutOff + "i";
+        }
+        else if(thePronoun1.equals("tu"))
+        {
+            daNew = cutOff + "iste";
+        }
+        else if(thePronoun1.equals("el") || thePronoun1.equals("ella") || thePronoun1.equals("usted"))
+        {
+            daNew = cutOff + "io";
+        }
+        else if(thePronoun1.equals("nosotros"))
+        {
+            daNew = cutOff + "imos";
+        }
+        else
+        {
+            daNew = cutOff + "ieron";
+        }
+        return daNew; 
+    }
+    public static String conjugateFutureAr(String thePronoun1, String theVerb1)
+    {
+        String cutOff = theVerb1.substring(0, theVerb1.length() - 2);
+        String daNew;
+        if(thePronoun1.equals("yo"))
+        {
+            daNew = cutOff + "are";
+        }
+        else if(thePronoun1.equals("tu"))
+        {
+            daNew = cutOff + "aras";
+        }
+        else if(thePronoun1.equals("el") || thePronoun1.equals("ella") || thePronoun1.equals("usted"))
+        {
+            daNew = cutOff + "ara";
+        }
+        else if(thePronoun1.equals("nosotros"))
+        {
+            daNew = cutOff + "aremos";
+        }
+        else 
+        {
+            daNew = cutOff + "aran";
+        }
+        return daNew; 
+    }
+    public static String conjugateFutureEr(String thePronoun1, String theVerb1)
+    {
+        String cutOff = theVerb1.substring(0, theVerb1.length()-2);
+        String daNew;
+        if(thePronoun1.equals("yo"))
+        {
+            daNew = cutOff + "ere";
+        }
+        else if(thePronoun1.equals("tu"))
+        {
+            daNew = cutOff + "eras";
+        }
+        else if(thePronoun1.equals("el") || thePronoun1.equals("ella") || thePronoun1.equals("usted"))
+        {
+            daNew = cutOff + "era";
+        }
+        else if(thePronoun1.equals("nosotros"))
+        {
+            daNew = cutOff + "eremos";
+        }
+        else
+        {
+            daNew = cutOff + "eran";
+        }
+        return daNew;
+    }
+    public static String conjugateFutureIr(String thePronoun1, String theVerb1)
+    {
+        String cutOff = theVerb1.substring(0, theVerb1.length()-2);
+        String daNew;
+        if(thePronoun1.equals("yo"))
+        {
+            daNew = cutOff + "ire";
+        }
+        else if(thePronoun1.equals("tu"))
+        {
+            daNew = cutOff + "iras";
+        }
+        else if(thePronoun1.equals("el") || thePronoun1.equals("ella") || thePronoun1.equals("usted"))
+        {
+            daNew = cutOff + "ira";
+        }
+        else if(thePronoun1.equals("nosotros"))
+        {
+            daNew = cutOff + "iremos";
+        }
+        else
+        {
+            daNew = cutOff + "iran";
+        }
+        return daNew; 
+    }
+}
