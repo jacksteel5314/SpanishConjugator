@@ -1,2 +1,2 @@
-# SpanishTranslator
+# SpanishConjugator
 #### In Progress
